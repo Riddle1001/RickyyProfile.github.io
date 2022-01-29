@@ -180,11 +180,12 @@
 
         a_title.href = title_link;
         a_title.innerText = title;
-
+        a_title.target = '_blank'
+        
         a_author.href = author_link;
         a_author.innerText = author;
         a_author.classList.add(author_group_color);
-
+        a_author.target = '_blank'
 
         td_title.appendChild(a_title);
         td_author.appendChild(a_author);
