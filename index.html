@@ -13,13 +13,6 @@
 </head>
 
 <style>
-
-    body {
-        background: #1d1d1d url(https://cdn.aimware.net/asset/img/background.png) fixed;
-        box-shadow: none !important;
-        color: white;
-    }
-
     .aimware-text {
         color: #ff4544
     }
@@ -104,15 +97,19 @@
         text-decoration: underline;
     }
 
+    #swap-theme {
+        float: left;
+    }
 
 </style>
 
 
-<body>
+<body style="background-color: rgba(254, 254, 254)">
     <p style="float: left;" class="p-0 m-0"><b>Total Scripts: <span id="total-scripts" style="color: red;">0</span></b></p>
     <p style="text-align: right;" class="p-0 m-0">Made by 
         <span><a class="vip" href="https://aimware.net/forum/user/17687" target="_blank">Chicken4676</a></span>
     </p>
+    <button id="swap-theme" class="btn">Swap Theme</button>
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -149,6 +146,7 @@
     <script>
     
     let threads = null
+    let theme = true
     
     document.getElementById("search").addEventListener("keyup", function(event) {
         // Search by Title or Author.
@@ -167,6 +165,14 @@
         }
     });
 
+    document.getElementById("swap-theme").addEventListener("click", function(e) {
+        if (theme) {
+            document.getElementsByTagName("body")[0].style = "background: #1d1d1d url(https://cdn.aimware.net/asset/img/background.png) fixed;color: white;"
+        } else {
+            document.getElementsByTagName("body")[0].style = "background-color: rgba(254, 254, 254)"
+        }
+        theme = !theme
+    })
 
     function add_row(title, title_link, author, author_link, author_group_color, views, replies, threads) {
         var table = document.getElementsByTagName("tbody")[0];
