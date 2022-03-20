@@ -107,6 +107,7 @@
 
 
 <body>
+    <p style="float: left;" class="p-0 m-0"><b>Total Scripts: <span id="total-scripts" style="color: red;">0</span></b></p>
     <p style="text-align: right;" class="p-0 m-0">Made by 
         <span><a class="vip" href="https://aimware.net/forum/user/17687" target="_blank">Chicken4676</a></span>
     </p>
@@ -229,6 +230,7 @@
     fetch('https://raw.githubusercontent.com/RickyyProfile/RickyyProfile.github.io/main/threads.json').then(response => {
         return response.json()
     }).then(json => {
+        document.getElementById("total-scripts").innerText = json.length
         for (let i = 0; i < json.length; i++) {
             add_row(
                 json[i].title,
