@@ -204,7 +204,9 @@
         td_views.innerText = views;
         td_replies.innerText = replies;
         td_threads.innerText = threads;
-        td_group.style.whiteSpace = "nowrap";    
+        td_group.style.whiteSpace = "nowrap"; 
+	
+	/*
         if (author_group_color === "admin"){
             td_group.innerHTML = "<span style='color: white; display: none'>(a)</span>";
         } else if(author_group_color === "supermod"){
@@ -220,7 +222,23 @@
         } else if(author_group_color === "banned"){
             td_group.innerHTML = "<span style='color: white; display: none'> (g)</span";
         }
-
+*/
+		
+        if (author_group_color === "admin"){
+            td_group.innerHTML = "<a href='#' class='admin'>Administrator</a><span style='color: white; display: none'> (a)</span>";
+        } else if(author_group_color === "supermod"){
+            td_group.innerHTML = "<a href='#' class='supermod'>Super Moderator</a><span style='color: white; display: none'> (b)</span>";
+        } else if(author_group_color === "reseller"){
+            td_group.innerHTML = "<a href='#' class='reseller'>Reseller</a><span style='color: white; display: none'> (c)</span";
+        } else if(author_group_color === "beta"){
+            td_group.innerHTML = "<a href='#' class='beta'>Beta Tester</a><span style='color: white; display: none'> (d)</span";
+        } else if(author_group_color === "vip"){
+            td_group.innerHTML = "<a href='#' class='vip'>VIP</a><span style='color: white; display: none'> (e)</span";
+        } else if(author_group_color === "registered"){
+            td_group.innerHTML = "<a href='#' class='registered'>Registered</a><span style='color: white; display: none'> (f)</span";
+        } else if(author_group_color === "banned"){
+            td_group.innerHTML = "<a href='#' class='banned'>Banned</a><span style='color: white; display: none'> (g)</span";
+        }
     
 
         tr.appendChild(td_title);
