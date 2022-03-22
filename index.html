@@ -35,6 +35,11 @@
         color: black;
         text-decoration: line-through;
     }
+	
+    .bannedg {
+        color: black;
+        text-decoration: line-through;
+    }
 
     .banned:hover {
         color: black;
@@ -44,7 +49,11 @@
     .registered {
         color: black;
     }
-
+	
+    .registeredg {
+        color: black;
+    }
+	
     .registered:hover {
         color: black;
         text-decoration: underline;
@@ -54,7 +63,12 @@
         color:#FFA000;
         font-weight: 700;
     }
-
+	
+    .vipg {
+        color:#FFA000;
+        font-weight: 700;
+    }
+	
     .vip:hover {
         color: #FFA000;
         text-decoration: underline;
@@ -62,6 +76,10 @@
 
 
     .beta {
+        color:#309830;
+    }
+	
+    .betag {
         color:#309830;
     }
 
@@ -73,6 +91,10 @@
     .reseller {
         color:#07C400;
     }
+	
+    .resellerg {
+        color:#07C400;
+    }
 
     .reseller:hover {
         color: #07C400;
@@ -82,6 +104,10 @@
     .supermod {
         color:#66B2FF;
     }
+	
+    .supermodg {
+        color:#66B2FF;
+    }
 
     .supermod:hover {
         color: #66B2FF;
@@ -89,6 +115,10 @@
     }
 
     .admin {
+        color: red;
+    }
+	
+    .adming {
         color: red;
     }
 
@@ -225,19 +255,19 @@
 */
 		
         if (author_group_color === "admin"){
-            td_group.innerHTML = "<div class='admin'><a>Administrator</a></div><span style='color: white; display: none'> (a)</span>";
+            td_group.innerHTML = "<div class='adming'><a>Administrator</a></div><span style='color: white; display: none'> (a)</span>";
         } else if(author_group_color === "supermod"){
-            td_group.innerHTML = "<div class='supermod'><a>Super Moderator</a></div><span style='color: white; display: none'> (b)</span>";
+            td_group.innerHTML = "<div class='supermodg'><a>Super Moderator</a></div><span style='color: white; display: none'> (b)</span>";
         } else if(author_group_color === "reseller"){
-            td_group.innerHTML = "<div class='reseller'><a>Reseller</a></div><span style='color: white; display: none'> (c)</span";
+            td_group.innerHTML = "<div class='resellerg'><a>Reseller</a></div><span style='color: white; display: none'> (c)</span";
         } else if(author_group_color === "beta"){
-            td_group.innerHTML = "<div class='beta'><a>Beta Tester</a></div><span style='color: white; display: none'> (d)</span";
+            td_group.innerHTML = "<div class='betag'><a>Beta Tester</a></div><span style='color: white; display: none'> (d)</span";
         } else if(author_group_color === "vip"){
-            td_group.innerHTML = "<div class='vip'><a>VIP</a></div><span style='color: white; display: none'> (e)</span";
+            td_group.innerHTML = "<div class='vipg'><a>VIP</a></div><span style='color: white; display: none'> (e)</span";
         } else if(author_group_color === "registered"){
-            td_group.innerHTML = "<div class='registered'><a>Registered</a></div><span style='color: white; display: none'> (f)</span";
+            td_group.innerHTML = "<div class='registeredg'><a>Registered</a></div><span style='color: white; display: none'> (f)</span";
         } else if(author_group_color === "banned"){
-            td_group.innerHTML = "<div class='banned'><a>Banned</a></div><span style='color: white; display: none'> (g)</span";
+            td_group.innerHTML = "<div class='bannedg'><a>Banned</a></div><span style='color: white; display: none'> (g)</span";
         }
     
 
