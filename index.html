@@ -134,12 +134,12 @@
 </style>
 
 
-<body style="background-color: rgba(254, 254, 254)">
+<body style="background-color: rgba(254, 254, 254)" onload="updateColor()"> 
     <p style="float: left;" class="p-0 m-0"><b>Total Scripts: <span id="total-scripts" style="color: red;">0</span></b></p>
     <p style="text-align: right;" class="p-0 m-0">Made by 
         <span><a class="vip" href="https://aimware.net/forum/user/17687" target="_blank">Chicken4676</a></span>
     </p>
-    <button id="swap-theme" class="btn">Switch Theme</button>
+    <button id="swap-theme" class="btn" onclick="buttonchange()">Switch Theme</button>
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -194,15 +194,54 @@
             }
         }
     });
-
-    document.getElementById("swap-theme").addEventListener("click", function(e) {
-        if (theme) {
+	
+	function buttonchange(){
+        if (getCookie("theme") === "true") {
             document.getElementsByTagName("body")[0].style = "background: #1d1d1d url(https://cdn.aimware.net/asset/img/background.png) fixed;color: white;"
         } else {
             document.getElementsByTagName("body")[0].style = "background-color: rgba(254, 254, 254)"
         }
-        theme = !theme
-    })
+		if(getCookie("theme") === "true"){
+			theme = "false";
+		}else{
+			theme = "true";
+		}
+		document.cookie = "theme=" + theme + ";"
+        if (getCookie("theme") === "true") {
+            document.getElementsByTagName("body")[0].style = "background: #1d1d1d url(https://cdn.aimware.net/asset/img/background.png) fixed;color: white;"
+        } else {
+            document.getElementsByTagName("body")[0].style = "background-color: rgba(254, 254, 254)"
+        }
+		
+	}
+	
+	function updateColor(){
+		if(getCookie("theme") != ""){
+			theme = getCookie("theme");
+			console.warn(theme)
+			if (getCookie("theme") === "true") {
+				document.getElementsByTagName("body")[0].style = "background: #1d1d1d url(https://cdn.aimware.net/asset/img/background.png) fixed;color: white;"
+			} else {
+				document.getElementsByTagName("body")[0].style = "background-color: rgba(254, 254, 254)"
+			}
+		}
+	}
+	
+	function getCookie(cname) {
+	  let name = cname + "=";
+	  let decodedCookie = decodeURIComponent(document.cookie);
+	  let ca = decodedCookie.split(';');
+	  for(let i = 0; i <ca.length; i++) {
+		let c = ca[i];
+		while (c.charAt(0) == ' ') {
+		  c = c.substring(1);
+		}
+		if (c.indexOf(name) == 0) {
+		  return c.substring(name.length, c.length);
+		}
+	  }
+	  return "";
+	}
 
     function add_row(title, title_link, author, author_link, author_group_color, views, replies, threads) {
         var table = document.getElementsByTagName("tbody")[0];
