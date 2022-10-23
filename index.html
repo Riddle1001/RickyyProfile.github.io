@@ -14,6 +14,11 @@
 </head>
 
 <style>
+
+    body {
+        padding: 10px;
+    }
+
     .aimware-text {
         color: #ff4544
     }
@@ -131,17 +136,36 @@
         padding: 3px;
         float: left;
     }
+
+    #contributors {
+        font-weight: bold;
+    }
+    
+
+
 </style>
 
 
 <body style="background: #1d1d1d url(https://cdn.aimware.net/asset/img/background.png) fixed;color: white;">
-    <p style="float: left;" class="p-0 m-0">
+    <!-- <p style="float: left;" class="p-0 m-0">
         <b>Total Scripts: <span id="total-scripts" style="color: red;">0</span></b>
     </p>
     <p style="text-align: right;" class="p-0 m-0">
         Made by<span> <a class="vip" href="https://aimware.net/forum/user/17687" target="_blank">Chicken4676</a></span>
-    </p>
-    <button id="swap-theme" class="btn" onclick="buttonchange()">Switch Theme</button>
+    </p> -->
+
+    <div class="d-flex">
+        <div class="d-flex flex-column">
+            <p><span>Total Scripts</span> <span id="total-scripts" style="color: red;"></span></p>
+            <button id="swap-theme" class="btn" onclick="buttonchange()">Switch Theme</button>
+        </div>
+        <div class="d-flex flex-column ml-auto" id="contributors">
+            <p class="p-0 m-0">Made by <a class="vip" href="https://aimware.net/forum/user/17687" target="_blank">Chicken4676</a></p>
+            <a class="ml-auto supermod" href="https://aimware.net/forum/user/88883" target="_blank">Rickyy</a>
+            <a class="ml-auto beta" href="https://aimware.net/forum/user/371446" target="_blank">m0nsterJ</a>
+            <a class="ml-auto beta" href="https://aimware.net/forum/user/218912" target="_blank">stacky</a>
+        </div>
+    </div>
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -163,6 +187,7 @@
                 <thead>
                     <tr>
                         <th id="TitleText" class="js-sort-string" scope="col">Title</th>
+                        <th id="CategoryText" class="js-sort-string" scope="col">Category</th>
                         <th id="Group" class="js-sort-last" scope="col">Group</th>
                         <th id="AuhtorText" class="js-sort-string" scope="col">Username</th>
                         <th id="ViewText" class="js-sort-number" scope="col">Views</th>
@@ -273,11 +298,48 @@
             document.cookie = `${name}=${value};expires=${expires.toUTCString()};path=/`
         }
 
+
+        // To add a new category, add a new category name and add the keywords that should be in that category.
+        // To a dd new keywords, add them to the array of the category, the keywords are case insensitive and are also checked for partial matches.
+        const categroies = {
+            HvH: [
+                "hvh",
+                "rage"
+            ],
+            Legit: ["legit"],
+            Utility: ["grenade", 
+                "util", 
+                "hitsound"
+            ],
+            Visual: [
+                "indicator",
+                "visual",
+                "watermark",
+                "esp"
+            ],
+            "Anti-Aim": [
+                "antiaim",
+                "anti-aim",
+                "desync",
+                "lby",
+                "freestand"
+            ],
+        } 
+        function addCategory(title){
+            for (const category in categroies) {
+                for (const keyword of categroies[category]) {
+                    if (title.toLowerCase().includes(keyword)) return category
+                }
+            }
+            return "Other"
+        }
+
         function add_row(title, title_link, author, author_link, author_group_color, views, replies, threads, date) {
             var table = document.getElementsByTagName("tbody")[0];
             var tr = document.createElement("tr");
 
             var td_title = document.createElement("td");
+            var td_category = document.createElement("td");
             var td_group = document.createElement("td");
             var td_author = document.createElement("td");
             var td_views = document.createElement("td");
@@ -288,9 +350,14 @@
             var a_title = document.createElement("a");
             var a_author = document.createElement("a");
 
+            const category = addCategory(title)
+            
+
             a_title.href = title_link;
             a_title.innerText = title;
             a_title.target = '_blank'
+
+            td_category.innerText = category
 
             a_author.href = author_link;
             a_author.innerText = author;
@@ -311,6 +378,7 @@
 
 
             tr.appendChild(td_title);
+            tr.appendChild(td_category);
             tr.appendChild(td_group);
             tr.appendChild(td_author);
             tr.appendChild(td_views);
